@@ -11,7 +11,6 @@ void main() async {
 }
 
 // teeeez
-// eeee
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
 
