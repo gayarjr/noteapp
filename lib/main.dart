@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/constans.dart';
+import 'package:noteapp/models/node_model.dart';
 import 'package:noteapp/views/notes_view.dart';
 
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox(KnoteBox);
-
+  Hive.registerAdapter(NoteModelAdapter());
   runApp(const NotesApp());
 }
 
-// كسم الضان
-// teeeez
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
 
