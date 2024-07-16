@@ -10,6 +10,7 @@ void main() async {
   runApp(const NotesApp());
 }
 
+// كسم الضان
 // teeeez
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
