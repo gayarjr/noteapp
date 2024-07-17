@@ -25,31 +25,13 @@ class NoteCubit extends Cubit<NoteState> {
     }
   }
 
-  void updateNote(NoteModel model) {
-    try {
-      box.put(model.date, model);
-      emit(UpdateNoteSuccess());
-    } catch (e) {
-      emit(UpdateNoteFailed(e.toString()));
-    }
-  }
-
-  void deleteNote(NoteModel model) {
-    try {
-      box.delete(model.title);
-      emit(DeleteNoteSuccess());
-      log('deleted');
-    } catch (e) {
-      log(e.toString());
-      emit(DeleteNoteFailed(e.toString()));
-    }
-  }
-
   List getAllNotes() {
     List notesList = [];
     try {
       notesList = box.values.toList();
-      emit(GetAllNoteSuccess(notesList));
+      List reversedList = notesList.reversed.toList();
+
+      emit(GetAllNoteSuccess(reversedList));
     } catch (e) {
       emit(GetAllNoteFailed(e.toString()));
     }

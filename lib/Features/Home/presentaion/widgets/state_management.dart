@@ -5,18 +5,20 @@ import 'package:noteapp/core/manager/note/note_cubit.dart';
 
 class ListOfNotesStateManagement extends StatelessWidget {
   const ListOfNotesStateManagement({super.key});
-
   @override
   Widget build(BuildContext context) {
-    List notes = [];
-    return BlocConsumer<NoteCubit, NoteState>(listener: (context, state) {
-      if (state is GetAllNoteSuccess) {
-        notes = state.notes;
-      }
-    }, builder: (context, state) {
-      return NotesListView(
-        ListofNoteModel: notes,
-      );
-    });
+    return BlocBuilder<NoteCubit, NoteState>(
+      builder: (context, state) {
+        if (state is GetAllNoteSuccess) {
+          return NotesListView(
+            ListofNoteModel: state.notes,
+          );
+        } else {
+          return const NotesListView(
+            ListofNoteModel: [],
+          );
+        }
+      },
+    );
   }
 }
