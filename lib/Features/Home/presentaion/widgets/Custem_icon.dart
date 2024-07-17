@@ -8,6 +8,7 @@ class CustemSearchIcon extends StatelessWidget {
     return Container(
       height: 45,
       width: 45,
+      margin: EdgeInsets.only(right: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: Colors.white.withOpacity(.1),
