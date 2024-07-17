@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:noteapp/Features/Home/presentaion/widgets/custem_note_item.dart';
 
 class NotesListView extends StatelessWidget {
-  const NotesListView({super.key});
-
+  const NotesListView({super.key, required this.ListofNoteModel});
+  final List ListofNoteModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: ListView.builder(
+          itemCount: ListofNoteModel.length,
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
-            return const Padding(
+            return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
-              child: const NoteItem(),
+              child: NoteItem(
+                model: ListofNoteModel[index],
+              ),
             );
           }),
     );

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/core/manager/note/note_cubit.dart';
 import 'package:noteapp/core/models/node_model.dart';
 import 'package:noteapp/Features/Edite-note/presentaion/edit_new_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
-
+  const NoteItem({super.key, required this.model});
+  final NoteModel model;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,27 +29,23 @@ class NoteItem extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                'flutter Tips',
+                model.title,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 26,
                 ),
               ),
               subtitle: Text(
-                'Build your carrer with tharwat samy',
+                model.subTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.5),
                   fontSize: 18,
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {
-                  NoteCubit().deleteNote(NoteModel(
-                      title: 'first note',
-                      subTitle: '',
-                      date: 'date',
-                      color: 2));
-                },
+                onPressed: () {},
                 icon: Icon(
                   Icons.delete,
                   color: Colors.black,
@@ -58,7 +53,7 @@ class NoteItem extends StatelessWidget {
               ),
             ),
             Text(
-              'May21,  2022',
+              model.date,
               style: TextStyle(
                 color: Colors.black.withOpacity(0.5),
               ),

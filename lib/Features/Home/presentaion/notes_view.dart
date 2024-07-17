@@ -1,22 +1,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/Features/Home/presentaion/widgets/Custem_icon.dart';
-import 'package:noteapp/core/manager/note/note_cubit.dart';
-import 'package:noteapp/Features/Home/presentaion/widgets/Notes_view_body.dart';
+import 'package:noteapp/Features/Home/presentaion/widgets/state_management.dart';
 import 'package:noteapp/Features/Add-note/presentaion/add_note_buttom_sheet.dart';
+import 'package:noteapp/core/manager/note/note_cubit.dart';
 
 class Notesview extends StatelessWidget {
   const Notesview({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List notes = NoteCubit().getAllNotes();
-
-    for (var i = 0; i < notes.length; i++) {
-      log(notes[i].title.toString());
-    }
-
+    BlocProvider.of<NoteCubit>(context).getAllNotes();
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -37,7 +33,7 @@ class Notesview extends StatelessWidget {
             CustemSearchIcon(icon: Icons.search),
           ],
         ),
-        body: const NotesViewBody(),
+        body: const ListOfNotesStateManagement(),
       ),
     );
   }
