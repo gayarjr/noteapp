@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/views/Widgets/note_form.dart';
+import 'package:noteapp/Features/Add-note/presentaion/widgets/note_form.dart';
 
 class AddNoteButtomSheet extends StatelessWidget {
   const AddNoteButtomSheet({super.key});

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/views/Widgets/custem_textfield.dart';
-import 'package:noteapp/views/Widgets/custom_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/core/manager/note/note_cubit.dart';
+import 'package:noteapp/core/models/node_model.dart';
+import 'package:noteapp/Features/Home/presentaion/widgets/custem_textfield.dart';
+import 'package:noteapp/Features/Add-note/presentaion/widgets/custom_button.dart';
 
 class NoteForm extends StatefulWidget {
   NoteForm({
@@ -28,8 +31,8 @@ class _NoteFormState extends State<NoteForm> {
           ),
           CustemTextField(
             hint: 'title',
-            onsaved: (p0) {
-              title = p0;
+            onsaved: (value) {
+              title = value;
             },
           ),
           SizedBox(
@@ -38,8 +41,8 @@ class _NoteFormState extends State<NoteForm> {
           CustemTextField(
             hint: 'content',
             maxlines: 5,
-            onsaved: (p0) {
-              supTitle = p0;
+            onsaved: (value) {
+              supTitle = value;
             },
           ),
           SizedBox(
@@ -47,8 +50,18 @@ class _NoteFormState extends State<NoteForm> {
           ),
           CustomButton(
             onTap: () {
+              DateTime date = DateTime.now();
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                if (title != null && supTitle != null) {
+                  NoteModel model = NoteModel(
+                    title: title!,
+                    subTitle: supTitle!,
+                    date: date.toString(),
+                    color: 0,
+                  );
+                  BlocProvider.of<NoteCubit>(context).addNote(model);
+                }
               } else {
                 autovalidateMode = AutovalidateMode.always;
               }

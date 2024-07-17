@@ -6,7 +6,7 @@ class CustemTextField extends StatelessWidget {
       {super.key, required this.hint, this.onsaved, this.maxlines = 1});
   final String hint;
   final int maxlines;
-  final void Function(String?)? onsaved;
+  final void Function(String? value)? onsaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
